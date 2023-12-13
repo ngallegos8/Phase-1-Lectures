@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", ()=>{
 function renderHeader(){
     return document.querySelector('h1').textContent = bookStore.name
 }
@@ -52,5 +53,40 @@ const renderBookCard = (cardData) => {
     li.className = 'list-li'
     li.append(h3, pAuthor, pPrice, image, btn)
     document.querySelector('#book-list').append(li)
+    btn.addEventListener("click", (e) => {
+        // li.remove()
+        // e.target.parentElement.remove()
+        e.target.parentNode.remove()
+    })
 }
 bookStore.inventory.forEach(renderBookCard)
+
+
+function log(event){
+    console.log(event)
+}
+
+document.querySelector("label").addEventListener("click", (event) => console.log(event))
+//e or event. Same thing
+
+//# is for query .notation is for class name or id
+document.querySelector("#book-form")
+
+form.addEventListener("submit", (event) => {
+    console.log(event)
+    event.preventDefault()
+    const book = {
+        title: event.target.title.value,
+        author: event.target.author.value,
+        price: event.target.price.value,
+        imageUrl: event.target.imageUrl.value,
+        inventory: event.target.inventory.value,
+        reviews: []
+    }
+    console.log(book)
+    debugger;
+    renderBookCard(book)
+})
+
+
+})
